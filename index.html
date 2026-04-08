@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+</head>
+<body>
+  
+  <div class="background-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="main-container">
+    <div class="calculator-container">
+      
+      <!-- Display Section -->
+      <div class="display-section">
+        <div class="history-display" id="historyDisplay"></div>
+        <input type="text" class="main-display" id="display" placeholder="0" readonly>
+      </div>
+
+      <!-- Controls & Mode Toggle -->
+      <div class="controls-bar">
+        <button class="mode-btn active" id="btn-deg">DEG</button>
+        <button class="mode-btn" id="btn-rad">RAD</button>
+        <div class="spacer"></div>
+        <button class="icon-btn" id="btn-history" title="History"><span class="material-icons-round">history</span></button>
+      </div>
+
+      <!-- Keypad -->
+      <div class="keypad">
+        <!-- Scientific Functions (Left Side/Top) -->
+        <div class="keys-scientific">
+          <button class="btn btn-sci" onclick="appendFunction('sin')">sin</button>
+          <button class="btn btn-sci" onclick="appendFunction('cos')">cos</button>
+          <button class="btn btn-sci" onclick="appendFunction('tan')">tan</button>
+          <button class="btn btn-sci" onclick="appendFunction('log')">log</button>
+          <button class="btn btn-sci" onclick="appendFunction('ln')">ln</button>
+          <button class="btn btn-sci" onclick="appendFunction('sqrt')">√</button>
+          <button class="btn btn-sci" onclick="appendOperator('^')">xʸ</button>
+          <button class="btn btn-sci" onclick="appendConstant('PI')">π</button>
+          <button class="btn btn-sci" onclick="appendConstant('E')">e</button>
+          <button class="btn btn-sci" onclick="appendOperator('%')">%</button>
+          <button class="btn btn-sci" onclick="fact()">!</button>
+          <button class="btn btn-sci" onclick="appendOperator('(')">(</button>
+          <button class="btn btn-sci" onclick="appendOperator(')')">)</button>
+          <button class="btn btn-sci" onclick="memory('MC')">MC</button>
+          <button class="btn btn-sci" onclick="memory('M+')">M+</button>
+          <button class="btn btn-sci" onclick="memory('MR')">MR</button>
+        </div>
+
+        <!-- Standard Functions (Right Side) -->
+        <div class="keys-standard">
+          <button class="btn btn-action" onclick="clearDisplay()">AC</button>
+          <button class="btn btn-action" onclick="backspace()"><span class="material-icons-round">backspace</span></button>
+          <button class="btn btn-op" onclick="appendOperator('/')">÷</button>
+          <button class="btn btn-op" onclick="appendOperator('*')">×</button>
+
+          <button class="btn btn-num" onclick="appendNumber(7)">7</button>
+          <button class="btn btn-num" onclick="appendNumber(8)">8</button>
+          <button class="btn btn-num" onclick="appendNumber(9)">9</button>
+          <button class="btn btn-op" onclick="appendOperator('-')">-</button>
+
+          <button class="btn btn-num" onclick="appendNumber(4)">4</button>
+          <button class="btn btn-num" onclick="appendNumber(5)">5</button>
+          <button class="btn btn-num" onclick="appendNumber(6)">6</button>
+          <button class="btn btn-op" onclick="appendOperator('+')">+</button>
+
+          <button class="btn btn-num" onclick="appendNumber(1)">1</button>
+          <button class="btn btn-num" onclick="appendNumber(2)">2</button>
+          <button class="btn btn-num" onclick="appendNumber(3)">3</button>
+          <!-- Equal button spans 2 rows visually in some designs, but we'll keep it simple grid -->
+          <button class="btn btn-eq" onclick="calculate()">=</button>
+          
+          <button class="btn btn-num btn-zero" onclick="appendNumber(0)">0</button>
+          <button class="btn btn-num" onclick="appendNumber('.')">.</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide-out History Panel -->
+    <div class="history-panel" id="historyPanel">
+      <div class="history-header">
+        <h3>History</h3>
+        <button class="icon-btn" onclick="clearHistory()"><span class="material-icons-round">delete_sweep</span></button>
+        <button class="icon-btn" onclick="toggleHistory()"><span class="material-icons-round">close</span></button>
+      </div>
+      <div class="history-list" id="historyList">
+        <!-- History Items go here -->
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
